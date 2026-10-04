@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <link rel="stylesheet" href="tv.css">
+  </style>
+  <title></title>
+
+  <!--[if IE]>   
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body class="gen">
+
+  <video id="clips" class="srcA" autoplay muted disablePictureInPicture src="">
+  </video>
+
+  <script>
+    const clipList = [
+      'noise001.mp4', 'noise002.mp4', 'noise003.mp4', 'noise004.mp4', 'noise005.mp4', 'noise006.mp4', 'noise007.mp4', 'noise008.mp4', 'noise009.mp4', 'noise010.mp4',
+      'noise011.mp4', 'noise012.mp4', 'noise013.mp4', 'noise014.mp4', 'noise015.mp4', 'noise016.mp4', 'noise017.mp4', 'noise018.mp4', 'noise019.mp4',
+    ]
+    const rates = [0.25, 0.5, 1.5, 2]
+    let clips = document.getElementById('clips')
+
+    clips.addEventListener('click', function (event) {
+      nextClip()
+    });
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      console.log(array)
+    }
+
+    window.addEventListener('DOMContentLoaded', function (event) { shuffle(clipList) });
+    window.addEventListener('DOMContentLoaded', function (event) { nextClip() });
+    clips.addEventListener('ended', function (event) { nextClip() });
+
+    function nextClip() {
+      let clipSourceString = (clips.src).toString()
+      console.log(clipSourceString)
+      let nowPlaying
+      if (clipSourceString.startsWith('file')) {
+        nowPlaying = clipSourceString.substring(30)
+        console.log('local')
+        let newClip = clipList.indexOf(nowPlaying) + 1
+        clips.src = '/E:/WORMTUBE/generator/' + clipList[newClip]
+      } else {
+        nowPlaying = clipSourceString.substring(31)
+        console.log('web')
+        let newClip = clipList.indexOf(nowPlaying) + 1
+        clips.src = "https://wormtube-gen.b-cdn.net/" + clipList[newClip]
+      }
+      console.log(nowPlaying)
+      let vidRate = Math.floor(Math.random() * 4)
+      clips.playbackRate = rates[vidRate]
+      clips.play()
+    }
+
+    function clipTime() {
+      let vidDur = clips.duration - 15;
+      console.log(vidDur)
+      let startTime = Math.floor(Math.random() * vidDur);
+      clips.currentTime = startTime;
+    };
+
+    clips.addEventListener('durationchange', function (event) {
+      clipTime()
+    });
+
+
+
+    (function loop() {
+      var rand = Math.floor(Math.random() * 90001) + 30000;
+      setTimeout(function () {
+        nextClip();
+        loop();
+      }, rand);
+    }());
+
+  </script>
+
+</body>
+
+</html>

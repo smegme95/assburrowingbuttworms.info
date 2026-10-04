@@ -1,0 +1,228 @@
+#vcp {
+  filter: opacity(var(--invop));
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+#vcp2 {
+  filter: opacity(var(--op));
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+#recLight {
+  width: 10px;
+  height: 10px;
+  border: 1px solid white;
+  display: inline-block;
+}
+
+.recOn {
+  background-color: #FF0000;
+}
+
+.recOff {
+  background-color: #000000;
+}
+
+.chooser {
+  -webkit-appearance: none;
+  width: 50px;
+  height: 10px;
+  margin-bottom: 5px;
+  color: #000000;
+  background: #000000;
+  display: inline;
+  outline-color: #FFFFFF;
+  outline-style: solid;
+  outline-width: thin;
+}
+
+.chooser::-moz-range-thumb {
+  width: 15px;
+  height: 20px;
+  background: #FFFFFF;
+  outline: none;
+  cursor: crosshair;
+}
+
+.chooser::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 15px;
+  height: 20px;
+  background: #FFFFFF;
+  outline: none;
+  cursor: crosshair;
+}
+
+.invisible {
+  display: none;
+}
+
+.columnsVcp {
+  display: inline-flex;
+  position: relative;
+  height: 150px;
+  width: 1280px;
+  margin-bottom: 20px;
+}
+
+.column_a {
+  display: inline-block;
+  width: 22%;
+}
+
+.column_b {
+  display: inline-block;
+  width: 47%;
+}
+
+.column_c {
+  display: flex;
+  width: 1280px;
+  height: 100%;
+}
+
+.vhs {
+  text-align: center;
+  text-decoration: underline;
+  justify-content: center;
+  position: relative;
+  width: 50px;
+  height: 75px;
+  padding: 5px;
+  margin: 5px;
+  border: 2px solid white;
+  display: inline-block;
+  cursor: grab;
+  font-size: 12px;
+  background-image: url('vwc.png');
+  background-color: #000000;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.vhs:active,
+.vhsA:active,
+.vhsB:active {
+  cursor: grabbing;
+  opacity: 100;
+}
+
+.vhs:move,
+.vhsA:move,
+.vhsB:move {
+  cursor: grabbing;
+  opacity: inherit;
+}
+
+h2 {
+  margin: 0px;
+}
+
+#div1 {
+  text-align: left;
+  overflow-y: scroll;
+  height: 78%;
+  border-left: 3px solid white;
+  border-right: 3px solid white;
+  border-bottom: 3px solid white;
+  padding: 5px;
+}
+
+#div2 {
+  height: 100%;
+  padding: 5px;
+  border: 3px solid white;
+  margin-right: 10px;
+}
+
+#libcon {
+  width: 27%;
+  margin-right: 10px;
+}
+
+#libhead {
+  height: 30px;
+  border: 3px solid white;
+}
+
+#vcrC {
+  display: flex;
+  align: center;
+}
+
+#vcrL {
+  width: 45%;
+  text-align: right;
+}
+
+#vcrR {
+  width: 55%;
+  text-align: left;
+  margin-left: 0px;
+}
+
+#vcrA,
+#vcrB {
+  width: 100px;
+  border: 3px solid white;
+  display: table-cell;
+}
+
+#vcrBlank {
+  margin-left: 10%;
+  width: 80px;
+  height: 100%;
+  padding: 0px;
+  border: 3px solid white;
+}
+
+#blankSource {
+  width: 80px;
+  height: 100%;
+  border: 3px solid white;
+  margin-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.locked {
+  background-color: #FFFFFF;
+  pointer-events: none;
+}
+
+#panel {
+  width: 360px;
+  height: 160px;
+  padding: 0px;
+  border: 3px solid white;
+  display: table-cell;
+}
+
+#panelCenter {
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+#panelA {
+  text-align: right;
+  display: inline-block;
+}
+
+#panelB {
+  text-align: left;
+  display: inline-block;
+  margin-left: 50px;
+}
+
+#mix {
+  width: 33%;
+}
+
+#seeker,
+#seeker2 {
+  width: 100px;
+}

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="description" content="">
+	<meta name="keywords" content="">
+	<link rel="stylesheet" href="tv.css">
+	</style>
+	<link rel="stylesheet" href="vcp_console.css">
+	</style>
+	<title>WORMTUBE v2.1</title>
+
+	<!--[if IE]>   
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+	<script>
+		//MOBILE CHECK
+		window.addEventListener('DOMContentLoaded', function (event) {
+			if (/Android|iPhone|iPad/i.test(navigator.userAgent)) {
+				window.location.replace('mobile.html')
+			}
+		});
+		window.addEventListener('DOMContentLoaded', function (event) { scanEnable() });
+		window.addEventListener('DOMContentLoaded', function (event) { volume.value = 0 });
+	</script>
+
+	<div align="center">
+		<div class="dropdown">
+			<button class="dropbtn">WORMTUBE (v2.1)</button>
+		</div>
+
+		<div id="console">
+
+			<div id="vidContainer">
+
+				<svg>
+					<filter id="keyR" color-interpolation-filters="sRGB" x="0" y="0" height="100%" width="100%">
+						<feColorMatrix type="matrix" values="1   0     0     0   0 
+                            0   1     0     0   0  
+                            0   0     1     0   0 
+                           -1   1.5   1.5   0   0" />
+					</filter>
+
+					<filter id="keyG" color-interpolation-filters="sRGB" x="0" y="0" height="100%" width="100%">
+						<feColorMatrix type="matrix" values="1      0     0     0   0 
+                            0      1     0     0   0  
+                            0      0     1     0   0 
+                            1.5   -1.5   1.5   0   0" />
+					</filter>
+
+					<filter id="keyB" color-interpolation-filters="sRGB" x="0" y="0" height="100%" width="100%">
+						<feColorMatrix type="matrix" values="1     0      0     0   0 
+                            0     1      0     0   0  
+                            0     0      1     0   0 
+                            1.5   1.5   -1.5   0   0" />
+					</filter>
+
+					<filter id="keyWh" color-interpolation-filters="sRGB" x="0" y="0" height="100%" width="100%">
+						<feColorMatrix type="matrix" values="1     0      0     0   0 
+                            0     1      0     0   0  
+                            0     0      1     0   0 
+                            1.5   1.5   -1.5   0   0" />
+					</filter>
+
+				</svg>
+
+				<div id="hueController" allow fullscreen style="--hue: 0deg; --sat: 100%">
+
+					<div id="negController" style="--inv: 0%" allow fullscreen>
+
+						<video id="deadair" class="srcAb" autoplay loop disablePictureInPicture src="dead_air_01.mp4">
+						</video>
+
+						<div id="streamer" class="srcOverlay"></div>
+
+						<video id="player" class="srcOverlay" autoplay muted disablePictureInPicture src="">
+						</video>
+
+						<iframe id="playerA" type="text/html" class="srcOverlay" style="opacity:1" frameborder="0"
+							allow="autoplay" allowfullscreen></iframe>
+
+						<iframe id="playerN" type="text/html" class="srcOverlay" style="opacity:0.2" frameborder="0"
+							allow="autoplay" allowfullscreen></iframe>
+
+						<iframe id="playerB" type="text/html" class="srcOverlay" frameborder="0" allow="autoplay"
+							allowfullscreen></iframe>
+
+						<video id="vcp" class="srcOverlay" style="--invop: 100%" disablePictureInPicture src="">
+						</video>
+
+						<video id="vcp2" class="srcOverlay" style="--op: 0%" disablePictureInPicture src="">
+						</video>
+
+					</div>
+
+				</div>
+
+			</div>
+			<span style="user-select:none">
+				<div id="controls">
+
+					<h3><span style="pointer-events:none">SOURCE SELECT</span></h3>
+					<div id="archivebutton" class="button"> >|ARCHIVE|</div>
+					<div id="vcpbutton" class="button">|VCP|</div><a class="button" href="vcpinfo.html" target="_blank"
+						style="font-size:13px">{?}</a>
+					<BR><BR>
+					<div id="vidgen" class="button">|GENERATOR|</div><a class="button" href="geninfo.html"
+						target="_blank" style="font-size:13px">{?}</a>
+					<BR><BR>
+					<h3>VIDEO CONTROLS</h3>
+					|HUE SHIFT&nbsp <input type="range" min="-180" max="180" value="0" class="slider" id="hueShift">|
+					<div id="hueValue" class="secret">0deg</div>
+					<BR>
+					|SATURATION <input type="range" min="0" max="200" value="100" class="slider" id="satShift">|
+					<div id="satValue" class="secret">100%</div>
+					<BR>
+					|NEGATIVE&nbsp&nbsp <input type="range" min="0" max="100" value="0" step="100" class="slider"
+						id="invShift">|
+					<div id="invValue" class="secret">0%</div>
+					<BR>
+					<div id="key" class="buttonX">|KEY&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp </div>
+					<input type="range" min="0" max="3" value="0" class="sliderX" id="keySwitch">|
+					<BR>
+					<div id="blend1" class="buttonX">|BLEND 1&nbsp&nbsp&nbsp </div>
+					<input type="range" min="0.2" max="0.7" value="0.5" step="0.01" class="sliderX" id="blender1">|
+					<BR>
+					<div id="blend2" class="buttonX">|BLEND 2&nbsp&nbsp&nbsp </div>
+					<input type="range" min="0" max="15" value="0" class="sliderX" id="blender2">|
+					<BR>
+					<div id="none" class="button">|RESET|</div>
+					<BR><BR>
+					<div id="scan" class="buttonX">|SCAN&nbsp </div>
+					<input type="range" min="0" max="5" value="2.5" step=".5" class="sliderX" id="scanSwitch">|<a
+						class="button" href="scaninfo.html" target="_blank" style="font-size:13px">{?}</a>
+					<BR><BR>
+					<div id="fs" class="button">|FULLSCREEN|</div>
+					<div id="skipper" class="secret">(skip)</div>
+					<h3>AUDIO CONTROLS</h3>
+					|VOLUME <input type="range" class="slider" id="volume" min="0" max="1" step=".01" value="0">|
+				</div>
+			</span>
+		</div>
+		<script src="https://embed.twitch.tv/embed/v1.js"></script>
+		<script src="wormtube.js">
+		</script>
+
+		<span style="user-select:none">
+			<div class="columnsVcp">
+
+				<div class="column_c">
+
+					<div class="column_a" align="left">
+						<div id="div2" align="center">
+							<BR>
+							<div id="vcrC">
+								<div id="vcrL">
+
+									<div id="vcrBlank" align="center" ondrop="loadBlank(event)"
+										ondragover="allowDrop(event)">
+									</div>
+								</div>
+								<div id="vcrR" style="line-height:.7">
+									<h2><U>VCR</U></h2>
+
+									<BR><BR>
+									|LABEL <input type="text" maxlength="7" size="5" id="customTitle">|
+									<BR><BR>
+									<div id="rec" class="button">|REC|
+									</div>
+									<div id="recLight" class="recOff">
+									</div>
+									<BR><BR>
+									<div id="ejectBlank" class="button">
+										|EJECT|
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div id="blankSource">
+						<B>NEW BLANK</B>
+					</div>
+
+					<div id="libcon">
+						<div id="libhead">
+							<h2 align="center">LIBRARY</h2>
+						</div>
+						<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+						</div>
+					</div>
+
+					<div class="column_b" align="center">
+						<div id="vcrA" ondrop="vidChange(event)" ondragover="allowDrop(event)">
+							<h2>A</h2>
+							<div id="ejectA" class="button">|EJECT|
+							</div>
+						</div>
+						<div id="panel">
+							<BR>
+							<div id="panelTop">
+								A|<input type="range" min="0" max="100" value="0" step="1" class="slider" id="mix">|B
+							</div>
+							<BR>
+							<div id="panelCenter" style="line-height:1.4">
+								<div id="panelA">
+									<div id="play" class="button">|PLAY|
+									</div>
+									<div id="stop" class="button">|STOP|
+									</div>
+									<BR>
+									<div class="buttonLabel">
+										|<span id="hr">0</span>:<span id="minu">00</span>:<span id="sec">00</span>|
+									</div>
+									<BR>
+									<div class="buttonLabel">|SEEK|
+									</div>
+									<BR>
+									|<input type="range" min="-2" max="2" value="1" step=".25" class="slider"
+										id="seeker">|
+								</div>
+								<div id="panelB">
+									<div id="play2" class="button">|PLAY|
+									</div>
+									<div id="stop2" class="button">|STOP|
+									</div>
+									<BR>
+									<div class="buttonLabel">
+										|<span id="hr2">0</span>:<span id="min2">00</span>:<span id="sec2">00</span>|
+									</div>
+									<BR>
+									<div class="buttonLabel">|SEEK|
+									</div>
+									<BR>
+									|<input type="range" min="-2" max="2" value="1" step=".25" class="slider"
+										id="seeker2">|
+								</div>
+							</div>
+						</div>
+						<div id="vcrB" ondrop="vidBChange(event)" ondragover="allowDrop(event)">
+							<h2>B</h2>
+							<div id="ejectB" class="button">|EJECT|
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</span>
+		<script src="vcp_console.js">
+		</script>
+		<BR><BR>
+		<div class="colA" align="center">
+
+			<span style="font-size:15px">
+				<I>I recommend disabling your ad blocker while using WORMTUBE as it may interfere with video playback.
+					<BR>
+					Don't worry, there's virtually zero chance anyone would pay me to put ads on this website and anyway
+					I won't do it, promise :)</I>
+				<BR><BR>
+			</span>
+
+			<P>
+
+				<u>WORMTUBE</u> releases audiovisual worms via the Internet at semi-regular intervals for both
+				entertainment and educational interests.
+				<BR><BR>
+				Enjoy fresh worms Live (schedule below), sample mature worms from the Archive or use the Generator to
+				breed mutants.
+				<BR><BR>
+			<h2>LIVE SCHEDULE</h2>
+			<I>*Shows begin at 7pm US Eastern Time unless otherwise noted*</i>
+			<BR><BR>
+
+			<iframe id="schedule" type="text/html" src="schedule.html" frameborder="0"></iframe>
+
+			<span style="font-size:20px">
+				<B>100% VIEWER-FUNDED</B>
+			</span>
+
+			<form style="padding:5px" action="https://www.paypal.com/donate" method="post" target="_top">
+				<input type="hidden" name="hosted_button_id" value="CHKJZ7WLBK5PU" />
+				<input type="image" class="button" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif"
+					border="0" name="submit" title="PayPal - The safer, easier way to pay online!"
+					alt="Donate with PayPal button" />
+				<img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1" />
+			</form>
+		</div>
+		<P>
+
+			To receive updates on WORMTUBE screenings and features, please email <a class="button"
+				href="mailto:tv@assburrowingbuttworms.info"><U>tv@assburrowingbuttworms.info</u></a>
+			with the subject: "Email Friends".
+			<BR><BR>
+			Email me any questions or if you have a video offering you would like me to include in the show.
+			<BR><BR>
+		<h2>FRIENDS // RESOURCES</h2>
+		<BR>
+		<a class="button" href="https://www.groundgrowncircuits.com" target="_blank">Ground Grown Circuits</a> //
+		<a class="button" href="https://jawless.bandcamp.com/" target="_blank">Ground Grown</a>
+		<BR><BR>
+		<a class="button" href="https://happyslap.bandcamp.com" target="_blank">Happyslap</a>
+		<BR><BR>
+		<a class="button" href="http://orderofcelestialintegration.org/" target="_blank">Order of Celestial
+			Integration</a>
+		<BR><BR>
+		<a class="button" href="http://waronmusic.org/" target="_blank">WAR ON MUSIC</a>
+
+		<BR><BR>
+		-----------------------------
+		<BR><BR>
+		<div style="font-size:15px">
+			<i>
+				<U>LICENSE</U>:
+				WORMTUBE software and source code may be copied and modified freely under the following
+				conditions:
+				<BR>(1) Derivative works
+				shall be licensed under same terms as original work.
+				<BR><BR>
+			</i>
+		</div>
+
+</body>
+
+</html>

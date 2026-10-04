@@ -1,0 +1,288 @@
+body {
+  color: #FFFFFF;
+  background-color: #000000;
+  margin: 0px;
+  font-family: Courier;
+}
+
+#console {
+  display: flex;
+  position: relative;
+  text-align: center;
+  width: 1276px;
+  height: 506px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 2px solid black;
+}
+
+#vidContainer {
+  height: 506px;
+  width: 900px;
+  display: inline-flex;
+  position: relative;
+  text-align: left;
+}
+
+#hueController {
+  filter: hue-rotate(var(--hue)) saturate(var(--sat));
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+#negController {
+  filter: invert(var(--inv));
+  pointer-events: none;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+#deadair {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+#streamer {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+#player {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+#playerA {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+#playerB {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+#playerN {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+#controls {
+  position: absolute;
+  display: inline-block;
+  text-align: left;
+  width: 282px;
+  height: 500px;
+  margin-left: 20px;
+  padding-left: 70px;
+  border: 3px solid white;
+}
+
+.colA {
+  position: relative;
+  width: 1280px;
+}
+
+.dropbtn {
+  color: #FFFFFF;
+  background-color: #000000;
+  margin-top: 20px;
+  font-family: Courier;
+  font-size: 32px;
+  font-weight: bold;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: #FFFFFF;
+  color: #000000;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content a {
+  color: #000000;
+  text-decoration: underline;
+  cursor: crosshair;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 30%;
+  height: 5px;
+  color: #000000;
+  background: #000000;
+  display: inline;
+  outline-color: #FFFFFF;
+  outline-style: solid;
+  outline-width: thin;
+}
+
+.slider::-moz-range-thumb {
+  width: 20px;
+  height: 10px;
+  background: #FFFFFF;
+  outline: none;
+  cursor: crosshair;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 10px;
+  background: #FFFFFF;
+  outline: none;
+  cursor: crosshair;
+}
+
+.sliderX {
+  -webkit-appearance: none;
+  width: 30%;
+  height: 5px;
+  color: #000000;
+  background: #000000;
+  display: inline;
+  outline-color: #858585;
+  outline-style: solid;
+  outline-width: thin;
+  pointer-events: none;
+}
+
+.sliderX::-moz-range-thumb {
+  width: 20px;
+  height: 10px;
+  background: #858585;
+  outline: none;
+  cursor: crosshair;
+}
+
+.sliderX::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 10px;
+  background: #858585;
+  outline: none;
+  cursor: crosshair;
+}
+
+.secret {
+  display: none;
+  opacity: 0;
+}
+
+.index {
+  position: absolute;
+  z-index: -1;
+}
+
+.gen {
+  color: #000000;
+  font-size: 0;
+  overflow: hidden;
+}
+
+.button {
+  display: inline-block;
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.button:hover {
+  text-decoration: underline;
+  cursor: crosshair;
+}
+
+.buttonX {
+  display: inline-block;
+  color: #858585;
+  text-decoration: none;
+  pointer-events: none;
+}
+
+.buttonY {
+  display: inline-block;
+  text-decoration: overline;
+  pointer-events: none;
+}
+
+.buttonLabel {
+  display: inline-block;
+  color: #FFFFFF;
+  text-decoration: none;
+  pointer-events: none;
+}
+
+.srcA {
+  height: 100%;
+  width: 100%;
+  border: none;
+  position: absolute;
+}
+
+.srcB {
+  height: 100%;
+  width: 100%;
+  transform: scale(1.5, 1.4);
+  border: none;
+  position: absolute;
+}
+
+.srcAb {
+  border: none;
+}
+
+.srcKeyR {
+  filter: url(#keyR);
+}
+
+.srcKeyG {
+  filter: url(#keyG);
+}
+
+.srcKeyB {
+  filter: url(#keyB);
+}
+
+.srcBlend {
+  opacity: 50%;
+}
+
+.srcOverlay {
+  border: none;
+  opacity: 0%;
+  z-index: -1;
+}
+
+.info {
+  max-width: 1280px;
+}
+
+#schedule {
+  width: 1280px;
+  height: 80px;
+}
+
+media-playlist {
+  width: 100%;
+  height: 100%;
+  --media-object-fit: cover;
+}
